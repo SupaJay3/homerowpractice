@@ -58,12 +58,12 @@ promptElement.textContent = currentPrompt;
 
 inputField.addEventListener('input', () => {
     if (inputField.value === currentPrompt) {
-        feedback.textContent = '✅ Correct!';
+        feedback.textContent = 'correct!';
         currentPrompt = randomPrompt();
         promptElement.textContent = currentPrompt;
         inputField.value = '';
     } else if (!currentPrompt.startsWith(inputField.value)) {
-        feedback.textContent = '❌ Mistake!';
+        feedback.textContent = 'incorrect.';
     } else {
         feedback.textContent = '';
     }
