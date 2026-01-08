@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Home Row Practice Terminal</title>
+<style>
+    body {
+        background: black;
+        color: lime;
+        font-family: monospace;
+        padding: 20px;
+    }
+    #terminal {
+        width: 100%;
+        max-width: 800px;
+        margin: auto;
+    }
+    #prompt {
+        margin-bottom: 10px;
+    }
+    #inputField {
+        background: black;
+        color: lime;
+        border: none;
+        outline: none;
+        font-family: monospace;
+        font-size: 1.2em;
+        width: 100%;
+    }
+    #feedback {
+        margin-top: 10px;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+<div id="terminal">
+    <div id="prompt"></div>
+    <input type="text" id="inputField" autofocus />
+    <div id="feedback"></div>
+</div>
+<script>
+const letters = 'asdfghjkl;';
+const promptElement = document.getElementById('prompt');
+const inputField = document.getElementById('inputField');
+const feedback = document.getElementById('feedback');
+
+function randomPrompt(length = 10) {
+    let result = '';
+    for (let i = 0; i < length; i++) {
+        result += letters[Math.floor(Math.random() * letters.length)];
+    }
+    return result;
+}
+
+let currentPrompt = randomPrompt();
+promptElement.textContent = currentPrompt;
+
+inputField.addEventListener('input', () => {
+    if (inputField.value === currentPrompt) {
+        feedback.textContent = '✅ Correct!';
+        currentPrompt = randomPrompt();
+        promptElement.textContent = currentPrompt;
+        inputField.value = '';
+    } else if (!currentPrompt.startsWith(inputField.value)) {
+        feedback.textContent = '❌ Mistake!';
+    } else {
+        feedback.textContent = '';
+    }
+});
+</script>
+</body>
+</html>
